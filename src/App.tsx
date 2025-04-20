@@ -2,7 +2,10 @@ import { useEffect, useState, useRef } from "react";
 import { io } from "socket.io-client";
 import "./App.css";
 
-const socket = io(import.meta.env.VITE_DB_URL, {
+const url = import.meta.env.VITE_DB_URL
+// const url = "http://localhost:3000"
+
+const socket = io(url, {
   withCredentials: true,
 });
 
@@ -25,7 +28,6 @@ function App() {
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    console.log(import.meta.env.VITE_DB_URL);
     socket.on("message", (msg: Message) => {
       setMessages((prev) => [...prev, msg]);
     });
