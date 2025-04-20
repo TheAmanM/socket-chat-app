@@ -2,7 +2,9 @@ import { useEffect, useState, useRef } from "react";
 import { io } from "socket.io-client";
 import "./App.css";
 
-const socket = io(import.meta.env.VITE_DB_URL);
+const socket = io(import.meta.env.VITE_DB_URL, {
+  withCredentials: true,
+});
 
 type Message = {
   sender: string;
